@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_screen/provider/user_list_provider.dart';
 import 'package:login_screen/router.dart';
-import 'package:login_screen/router_const.dart';
 import 'package:login_screen/screns/home_page.dart';
 import 'package:login_screen/screns/registration_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -109,7 +108,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   decoration: InputDecoration(
                       labelText: 'Password',
                       hintText: 'Enter Password cityslicka',
-                      icon: Icon(Icons.lock),
+                      icon: const Icon(Icons.lock),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0))),
                   validator: (value) {
@@ -169,7 +168,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: Colors.blue),
-                      child: Center(
+                      child: const Center(
                           child: Text(
                         'Login',
                         style: TextStyle(
@@ -182,6 +181,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(

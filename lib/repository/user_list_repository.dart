@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:login_screen/models/user_data_model.dart';
 import 'package:login_screen/models/user_list_response.dart';
 
 class UserListRepository {
@@ -50,4 +52,15 @@ class UserListRepository {
       rethrow;
     }
   }
+
+  List<UserDataModel> getFilteredData(String searchTerm, List<UserDataModel> users) {
+    final filteredUserData = users.where((user) {
+      final fullName = '${user.firstName} ${user.lastName}'.toLowerCase();
+      return fullName.contains(searchTerm);
+    }).toList();
+    return filteredUserData;
+  }
+
+
+
 }

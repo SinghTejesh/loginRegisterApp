@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:login_screen/models/user_data_model.dart';
 import 'package:login_screen/models/user_list_response.dart';
 import 'package:login_screen/repository/user_list_repository_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -39,4 +40,19 @@ class UserList extends _$UserList {
       return AsyncValue.error('Error searching products: $e', StackTrace.current);
     }
   }
+
+  List<UserDataModel> getFilteredUserData(String searchTerm, List<UserDataModel> users) {
+   try {
+     final userData = ref.read(userListRepositoryProvider).getFilteredData(searchTerm, users);
+     return userData;
+   }catch (e){
+     print('Error i  getting data: $e');
+   }
+   return [];
+  }
+
+
+
+
+
 }
