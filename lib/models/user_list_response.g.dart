@@ -9,9 +9,9 @@ part of 'user_list_response.dart';
 _$_UserListResponse _$$_UserListResponseFromJson(Map<String, dynamic> json) =>
     _$_UserListResponse(
       page: json['page'] as int,
-      perPage: json['per_page'] as int,
+      per_page: json['per_page'] as int,
       total: json['total'] as int,
-      totalPages: json['total_pages'] as int,
+      total_pages: json['total_pages'] as int,
       data: (json['data'] as List<dynamic>)
           .map((e) => UserDataModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -20,8 +20,8 @@ _$_UserListResponse _$$_UserListResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_UserListResponseToJson(_$_UserListResponse instance) =>
     <String, dynamic>{
       'page': instance.page,
-      'per_page': instance.perPage,
+      'per_page': instance.per_page,
       'total': instance.total,
-      'total_pages': instance.totalPages,
+      'total_pages': instance.total_pages,
       'data': instance.data,
     };

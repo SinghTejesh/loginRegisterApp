@@ -21,9 +21,9 @@ UserListResponse _$UserListResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserListResponse {
   int get page => throw _privateConstructorUsedError;
-  int get perPage => throw _privateConstructorUsedError;
+  int get per_page => throw _privateConstructorUsedError;
   int get total => throw _privateConstructorUsedError;
-  int get totalPages => throw _privateConstructorUsedError;
+  int get total_pages => throw _privateConstructorUsedError;
   List<UserDataModel> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,9 +40,9 @@ abstract class $UserListResponseCopyWith<$Res> {
   @useResult
   $Res call(
       {int page,
-      int perPage,
+      int per_page,
       int total,
-      int totalPages,
+      int total_pages,
       List<UserDataModel> data});
 }
 
@@ -60,9 +60,9 @@ class _$UserListResponseCopyWithImpl<$Res, $Val extends UserListResponse>
   @override
   $Res call({
     Object? page = null,
-    Object? perPage = null,
+    Object? per_page = null,
     Object? total = null,
-    Object? totalPages = null,
+    Object? total_pages = null,
     Object? data = null,
   }) {
     return _then(_value.copyWith(
@@ -70,17 +70,17 @@ class _$UserListResponseCopyWithImpl<$Res, $Val extends UserListResponse>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
-      perPage: null == perPage
-          ? _value.perPage
-          : perPage // ignore: cast_nullable_to_non_nullable
+      per_page: null == per_page
+          ? _value.per_page
+          : per_page // ignore: cast_nullable_to_non_nullable
               as int,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
-      totalPages: null == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
+      total_pages: null == total_pages
+          ? _value.total_pages
+          : total_pages // ignore: cast_nullable_to_non_nullable
               as int,
       data: null == data
           ? _value.data
@@ -100,9 +100,9 @@ abstract class _$$_UserListResponseCopyWith<$Res>
   @useResult
   $Res call(
       {int page,
-      int perPage,
+      int per_page,
       int total,
-      int totalPages,
+      int total_pages,
       List<UserDataModel> data});
 }
 
@@ -118,9 +118,9 @@ class __$$_UserListResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? page = null,
-    Object? perPage = null,
+    Object? per_page = null,
     Object? total = null,
-    Object? totalPages = null,
+    Object? total_pages = null,
     Object? data = null,
   }) {
     return _then(_$_UserListResponse(
@@ -128,17 +128,17 @@ class __$$_UserListResponseCopyWithImpl<$Res>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
-      perPage: null == perPage
-          ? _value.perPage
-          : perPage // ignore: cast_nullable_to_non_nullable
+      per_page: null == per_page
+          ? _value.per_page
+          : per_page // ignore: cast_nullable_to_non_nullable
               as int,
       total: null == total
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int,
-      totalPages: null == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
+      total_pages: null == total_pages
+          ? _value.total_pages
+          : total_pages // ignore: cast_nullable_to_non_nullable
               as int,
       data: null == data
           ? _value._data
@@ -155,9 +155,9 @@ class _$_UserListResponse
     implements _UserListResponse {
   const _$_UserListResponse(
       {required this.page,
-      required this.perPage,
+      required this.per_page,
       required this.total,
-      required this.totalPages,
+      required this.total_pages,
       required final List<UserDataModel> data})
       : _data = data;
 
@@ -167,11 +167,11 @@ class _$_UserListResponse
   @override
   final int page;
   @override
-  final int perPage;
+  final int per_page;
   @override
   final int total;
   @override
-  final int totalPages;
+  final int total_pages;
   final List<UserDataModel> _data;
   @override
   List<UserDataModel> get data {
@@ -182,7 +182,7 @@ class _$_UserListResponse
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserListResponse(page: $page, perPage: $perPage, total: $total, totalPages: $totalPages, data: $data)';
+    return 'UserListResponse(page: $page, per_page: $per_page, total: $total, total_pages: $total_pages, data: $data)';
   }
 
   @override
@@ -191,9 +191,9 @@ class _$_UserListResponse
     properties
       ..add(DiagnosticsProperty('type', 'UserListResponse'))
       ..add(DiagnosticsProperty('page', page))
-      ..add(DiagnosticsProperty('perPage', perPage))
+      ..add(DiagnosticsProperty('per_page', per_page))
       ..add(DiagnosticsProperty('total', total))
-      ..add(DiagnosticsProperty('totalPages', totalPages))
+      ..add(DiagnosticsProperty('total_pages', total_pages))
       ..add(DiagnosticsProperty('data', data));
   }
 
@@ -203,17 +203,18 @@ class _$_UserListResponse
         (other.runtimeType == runtimeType &&
             other is _$_UserListResponse &&
             (identical(other.page, page) || other.page == page) &&
-            (identical(other.perPage, perPage) || other.perPage == perPage) &&
+            (identical(other.per_page, per_page) ||
+                other.per_page == per_page) &&
             (identical(other.total, total) || other.total == total) &&
-            (identical(other.totalPages, totalPages) ||
-                other.totalPages == totalPages) &&
+            (identical(other.total_pages, total_pages) ||
+                other.total_pages == total_pages) &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, page, perPage, total, totalPages,
-      const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, page, per_page, total,
+      total_pages, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -232,9 +233,9 @@ class _$_UserListResponse
 abstract class _UserListResponse implements UserListResponse {
   const factory _UserListResponse(
       {required final int page,
-      required final int perPage,
+      required final int per_page,
       required final int total,
-      required final int totalPages,
+      required final int total_pages,
       required final List<UserDataModel> data}) = _$_UserListResponse;
 
   factory _UserListResponse.fromJson(Map<String, dynamic> json) =
@@ -243,11 +244,11 @@ abstract class _UserListResponse implements UserListResponse {
   @override
   int get page;
   @override
-  int get perPage;
+  int get per_page;
   @override
   int get total;
   @override
-  int get totalPages;
+  int get total_pages;
   @override
   List<UserDataModel> get data;
   @override
