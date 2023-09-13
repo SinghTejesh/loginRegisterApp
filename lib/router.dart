@@ -5,10 +5,10 @@ import 'package:login_screen/screns/registration_screen.dart';
 import 'package:login_screen/screns/splash_screen.dart';
 
 class AppRouter {
-  static const String splashScreen = '/';
+  static const String splashScreen = '/homeScreen';
   static const String loginScreen = '/loginScreen';
   static const String registration = '/registration';
-  static const String homeScreen = '/homeScreen';
+  static const String homeScreen = '/';
 
   static final GoRouter router = GoRouter(
     routes: [

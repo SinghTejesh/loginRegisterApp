@@ -5,13 +5,14 @@ import 'package:login_screen/router.dart';
 //void main() => runApp(LoginScreen());
 
 void main() => runApp(
-  ProviderScope(
-      child: MyApp()
-  )
-
-);
+      const ProviderScope(
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
