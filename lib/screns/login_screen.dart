@@ -153,7 +153,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           // Handle the case where the result is not as expected
                         }
                         if (uname == userEmail && pwd == userPass) {
-                          context.pushNamed(AppRouter.homeScreen);
+                          Navigator.of(currentContext)
+                              .pushNamed(AppRouter.homeScreen);
                         } else {
                           setState(() {
                             _message =
