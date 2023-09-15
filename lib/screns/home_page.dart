@@ -4,12 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:login_screen/models/user_data_model.dart';
-import 'package:login_screen/models/user_list_response.dart';
 import 'package:login_screen/provider/search_query_provider.dart';
 import 'package:login_screen/provider/user_list_provider.dart';
-import 'package:login_screen/provider/user_search_provider.dart';
+import 'package:login_screen/router.dart';
 import 'package:login_screen/screns/components/searchbox_widget.dart';
 import 'package:login_screen/screns/components/user_data_card_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -35,6 +35,12 @@ class _HomePageState extends ConsumerState<HomePage> {
     });
   }
 
+  void _handleLogout(BuildContext context) async {
+    var getSharedPrefData = await SharedPreferences.getInstance();
+    await getSharedPrefData.remove('userToken');
+    AppRouter.router.go(AppRouter.loginScreen); // Replace '/login' with your actual login route
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -43,11 +49,19 @@ class _HomePageState extends ConsumerState<HomePage> {
     _searchController.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('User data'),
+        title: const Text('Dashboard'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => _handleLogout(context),
+          ),
+        ],
       ),
       body: Consumer(
         builder: (context, ref, child) {
@@ -71,9 +85,9 @@ class _HomePageState extends ConsumerState<HomePage> {
 
               final filteredUsers = userData.where((user) {
                 if (searchQuery.isNotEmpty &&
-                        !user.firstName.toLowerCase().contains(searchQuery) &&
-                    !user.lastName.toLowerCase().contains(searchQuery)) {
-                  return false; // Skip user that don't match the search query
+                    !(user.firstName.toLowerCase().startsWith(searchQuery) ||
+                        user.lastName.toLowerCase().startsWith(searchQuery))) {
+                  return false; // Skip users that don't match the search query
                 }
 
                 return true;

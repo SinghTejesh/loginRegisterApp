@@ -41,6 +41,19 @@ class UserList extends _$UserList {
     }
   }
 
+  Future<AsyncValue<String>> registerUser(String email, String password) async {
+    try {
+      final userData = await ref.read(userListRepositoryProvider).registerUser(email, password);
+      return AsyncValue.data(userData);
+    } on DioException catch (e) {
+      print('Error searching User Response due to DIO EXCEPTION: $e');
+      return AsyncValue.error('Error searching User Response: $e', StackTrace.current);
+    } catch (e) {
+      print('Error searching User Response: $e');
+      return AsyncValue.error('Error searching products: $e', StackTrace.current);
+    }
+  }
+
   List<UserDataModel> getFilteredUserData(String searchTerm, List<UserDataModel> users) {
    try {
      final userData = ref.read(userListRepositoryProvider).getFilteredData(searchTerm, users);

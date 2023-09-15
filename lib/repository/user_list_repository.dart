@@ -53,6 +53,32 @@ class UserListRepository {
     }
   }
 
+  Future<String> registerUser(String email, String password) async {
+
+    try {
+      final response = await client.post(
+        "register",
+        data: {
+          "email": email,
+          "password": password,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final jsonData = response.data as Map<String, dynamic>;
+        final token = jsonData['token'] as String;
+        final id = jsonData['id'] as int;
+        return token;
+      } else {
+        return
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      print("catch block rethrow $e");
+      rethrow;
+    }
+  }
+
   List<UserDataModel> getFilteredData(String searchTerm, List<UserDataModel> users) {
     final filteredUserData = users.where((user) {
       final fullName = '${user.firstName} ${user.lastName}'.toLowerCase();

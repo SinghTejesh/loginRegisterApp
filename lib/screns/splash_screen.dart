@@ -15,7 +15,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    // Simulate a delay for the splash screen (e.g., 2 seconds)
     navigateToScreens();
   }
 
@@ -23,10 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () async {
       var getSharedPrefData = await SharedPreferences.getInstance();
       String? userExistToken = getSharedPrefData.getString('userToken');
-      if (userExistToken != null ) {
-        context.pushNamed(AppRouter.homeScreen);
-      }else{
-        context.pushNamed(AppRouter.loginScreen);
+      // getSharedPrefData.remove('userToken');
+       if (userExistToken != null ) {
+         AppRouter.router.go(AppRouter.homeScreen);
+       }else{
+         AppRouter.router.go(AppRouter.loginScreen);
       }
 
     });

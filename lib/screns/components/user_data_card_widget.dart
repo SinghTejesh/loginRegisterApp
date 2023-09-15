@@ -15,11 +15,11 @@ class UserDataCardWidget extends StatelessWidget {
         elevation: 4,
         child: ListTile(
           title: Text(
-            user.firstName,
+            user.firstName + " " + user.lastName,
             style: const TextStyle(color: Colors.white),
           ),
           subtitle: Text(
-            user.lastName,
+            user.email,
             style: const TextStyle(color: Colors.white),
           ),
           trailing: CircleAvatar(
