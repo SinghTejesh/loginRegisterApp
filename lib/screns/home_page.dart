@@ -3,12 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_screen/models/user_data_model.dart';
 import 'package:login_screen/provider/search_query_provider.dart';
 import 'package:login_screen/provider/user_list_provider.dart';
 import 'package:login_screen/router.dart';
 import 'package:login_screen/screns/components/searchbox_widget.dart';
 import 'package:login_screen/screns/components/user_data_card_widget.dart';
+import 'package:login_screen/bottom_router_setup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -20,6 +22,7 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   final TextEditingController _searchController = TextEditingController();
+
 
   @override
   void initState() {
@@ -33,12 +36,16 @@ class _HomePageState extends ConsumerState<HomePage> {
       ref.read(searchQueryProvider.notifier).state =
           _searchController.text.trim().toLowerCase();
     });
+
   }
+
+
 
   void _handleLogout(BuildContext context) async {
     var getSharedPrefData = await SharedPreferences.getInstance();
     await getSharedPrefData.remove('userToken');
     AppRouter.router.go(AppRouter.loginScreen); // Replace '/login' with your actual login route
+    //context.go(AppRouter.loginScreen);
   }
 
   @override

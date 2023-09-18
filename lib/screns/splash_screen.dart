@@ -24,9 +24,9 @@ class _SplashScreenState extends State<SplashScreen> {
       String? userExistToken = getSharedPrefData.getString('userToken');
       // getSharedPrefData.remove('userToken');
        if (userExistToken != null ) {
-         AppRouter.router.go(AppRouter.homeScreen);
+         GoRouter.of(context).go(AppRouter.homeScreen);
        }else{
-         AppRouter.router.go(AppRouter.loginScreen);
+         GoRouter.of(context).go(AppRouter.loginScreen);
       }
 
     });

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:login_screen/bottom_router_setup.dart';
 import 'package:login_screen/router.dart';
 
 //void main() => runApp(LoginScreen());
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
       routeInformationParser: AppRouter.router.routeInformationParser,
       routerDelegate: AppRouter.router.routerDelegate,
       routeInformationProvider: AppRouter.router.routeInformationProvider,
+
+
     );
   }
 }

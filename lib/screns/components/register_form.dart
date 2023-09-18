@@ -96,7 +96,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     var uname = widget.unameController.text;
                     var pwd = widget.pwdController.text;
                     var token = await widget.registerUser(uname, pwd);
-                    processToken(token, (){
+                    processToken(context,token, (){
                       widget.showSnackBar("Enter Email: eve.holt@reqres.in and Password:pistol");
                     });
                   }
