@@ -7,17 +7,15 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
   const ScaffoldWithNestedNavigation({
     Key? key,
     required this.navigationShell,
-    required this.context, // Add this line
-  }) : super(key: key ?? const ValueKey('ScaffoldWithNestedNavigation'));
+  }) : super(key: key);
   final StatefulNavigationShell navigationShell;
-  final BuildContext context; // Add this line
 
-  void _goBranch(int index) {
+  void _goBranch(int index, BuildContext context) {
     navigationShell.goBranch(
       index,
       initialLocation: index == navigationShell.currentIndex,
     );
-    print('Here : $index');
+    print('Error Index $index');
     // Handle navigation based on the index
     if (index == 0) {
       GoRouter.of(context).go(AppRouter.homeScreen);
@@ -28,14 +26,13 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navigationShell.currentIndex,
-        onTap: _goBranch,
+        onTap: (index) => _goBranch(index, context),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

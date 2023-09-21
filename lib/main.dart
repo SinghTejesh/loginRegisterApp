@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:login_screen/bottom_router_setup.dart';
 import 'package:login_screen/router.dart';
 
-//void main() => runApp(LoginScreen());
+void main() {
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
+}
 
-void main() => runApp(
-      const ProviderScope(
-        child: MyApp(),
-      ),
-    );
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends ConsumerWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final goRouter = ref.watch(AppRouter().goRouterProvider);
     return MaterialApp.router(
+      //routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
-      routeInformationParser: AppRouter.router.routeInformationParser,
-      routerDelegate: AppRouter.router.routerDelegate,
-      routeInformationProvider: AppRouter.router.routeInformationProvider,
-
-
+      routeInformationParser: goRouter.routeInformationParser,
+      routerDelegate: goRouter.routerDelegate,
+      routeInformationProvider: goRouter.routeInformationProvider,
     );
   }
 }

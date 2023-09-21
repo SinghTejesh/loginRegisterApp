@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_screen/router.dart';
 import 'package:login_screen/screns/components/login_form_methods.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -96,7 +97,8 @@ class _RegisterFormState extends State<RegisterForm> {
                     var uname = widget.unameController.text;
                     var pwd = widget.pwdController.text;
                     var token = await widget.registerUser(uname, pwd);
-                    processToken(context,token, (){
+                    var container = ProviderContainer();
+                    processToken(container,context,token, (){
                       widget.showSnackBar("Enter Email: eve.holt@reqres.in and Password:pistol");
                     });
                   }
@@ -127,7 +129,7 @@ class _RegisterFormState extends State<RegisterForm> {
             child: Center(
               child: TextButton(
                 onPressed: () async {
-                  AppRouter.router.go(AppRouter.loginScreen);
+                  GoRouter.of(context).go(AppRouter.loginScreen);
                 },
 
                 child: const SizedBox(

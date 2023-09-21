@@ -10,7 +10,6 @@ import 'package:login_screen/provider/user_list_provider.dart';
 import 'package:login_screen/router.dart';
 import 'package:login_screen/screns/components/searchbox_widget.dart';
 import 'package:login_screen/screns/components/user_data_card_widget.dart';
-import 'package:login_screen/bottom_router_setup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -22,7 +21,6 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   final TextEditingController _searchController = TextEditingController();
-
 
   @override
   void initState() {
@@ -36,16 +34,12 @@ class _HomePageState extends ConsumerState<HomePage> {
       ref.read(searchQueryProvider.notifier).state =
           _searchController.text.trim().toLowerCase();
     });
-
   }
-
-
 
   void _handleLogout(BuildContext context) async {
     var getSharedPrefData = await SharedPreferences.getInstance();
     await getSharedPrefData.remove('userToken');
-    AppRouter.router.go(AppRouter.loginScreen); // Replace '/login' with your actual login route
-    //context.go(AppRouter.loginScreen);
+    context.go(AppRouter.loginScreen);
   }
 
   @override
@@ -56,10 +50,9 @@ class _HomePageState extends ConsumerState<HomePage> {
     _searchController.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    ref.watch(AppRouter().goRouterProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),

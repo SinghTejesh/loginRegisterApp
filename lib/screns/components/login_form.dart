@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_screen/provider/user_list_provider.dart';
 import 'package:login_screen/router.dart';
 import 'package:login_screen/screns/components/login_form_methods.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginForm extends StatefulWidget {
   final TextEditingController unameController;
   final TextEditingController pwdController;
   final Function(String message) showSnackBar;
-  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey;
+
   final Future<AsyncValue<String>> Function(String, String) fetchUserLogin;
 
   const LoginForm({
     Key? key,
     required this.unameController,
     required this.pwdController,
-    //required this.formKey,
     required this.showSnackBar,
-    required this.scaffoldMessengerKey,
     required this.fetchUserLogin,
   }) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
+
 }
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -101,11 +98,12 @@ class _LoginFormState extends State<LoginForm> {
                     var uname = widget.unameController.text;
                     var pwd = widget.pwdController.text;
                     var token = await widget.fetchUserLogin(uname, pwd);
+                    var container = ProviderContainer();
 
-
-                    processToken(context,token, () {
+                    processToken(container ,context,token, () {
                       widget.showSnackBar("Enter Email: eve.holt@reqres.in and Password: pistol");
                     });
+
                   }
                 },
                 style: ButtonStyle(
@@ -142,7 +140,7 @@ class _LoginFormState extends State<LoginForm> {
             child: Center(
               child: TextButton(
                 onPressed: () async {
-                  AppRouter.router.go(AppRouter.registration);
+                  GoRouter.of(context).go(AppRouter.registration);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
