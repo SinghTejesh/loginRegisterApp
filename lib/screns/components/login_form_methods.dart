@@ -4,16 +4,17 @@ import 'package:go_router/go_router.dart';
 import 'package:login_screen/router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-void processToken(ProviderContainer container ,BuildContext context ,token, Function showSnackBar) async {
+void processToken(ProviderContainer container, BuildContext context, token,
+    Function showSnackBar) async {
   if (token != null) {
     if (token is AsyncData<String>) {
       String tokenValue = token.value;
       final SharedPreferences sharedPreferences =
-      await SharedPreferences.getInstance();
+          await SharedPreferences.getInstance();
       await sharedPreferences.setString("userToken", tokenValue);
-      context.go(AppRouter.homeScreen);
-
+      if (context.mounted) {
+        context.go(AppRouter.homeScreen);
+      }
     } else {
       showSnackBar();
     }
@@ -21,7 +22,3 @@ void processToken(ProviderContainer container ,BuildContext context ,token, Func
     showSnackBar();
   }
 }
-
-
-
-

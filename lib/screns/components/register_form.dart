@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_screen/router.dart';
 import 'package:login_screen/screns/components/login_form_methods.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -22,7 +21,7 @@ class RegisterForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-   createState() => _RegisterFormState();
+  createState() => _RegisterFormState();
 }
 
 class _RegisterFormState extends State<RegisterForm> {
@@ -38,12 +37,12 @@ class _RegisterFormState extends State<RegisterForm> {
             padding: EdgeInsets.only(top: 40, bottom: 20),
             child: Center(
                 child: Text(
-                  'Registration',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.grey),
-                )),
+              'Registration',
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.grey),
+            )),
           ),
 
           Padding(
@@ -75,7 +74,7 @@ class _RegisterFormState extends State<RegisterForm> {
               decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Enter Password',
-                  icon: Icon(Icons.lock),
+                  icon: const Icon(Icons.lock),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0))),
               validator: (value) {
@@ -87,7 +86,6 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
           ),
 
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
@@ -98,11 +96,13 @@ class _RegisterFormState extends State<RegisterForm> {
                     var pwd = widget.pwdController.text;
                     var token = await widget.registerUser(uname, pwd);
                     var container = ProviderContainer();
-                    processToken(container,context,token, (){
-                      widget.showSnackBar("Enter Email: eve.holt@reqres.in and Password:pistol");
-                    });
+                    if (mounted) {
+                      processToken(container, context, token, () {
+                        widget.showSnackBar(
+                            "Enter Email: eve.holt@reqres.in and Password:pistol");
+                      });
+                    }
                   }
-
                 },
                 child: Container(
                   width: 200,
@@ -112,13 +112,13 @@ class _RegisterFormState extends State<RegisterForm> {
                       color: Colors.blue),
                   child: const Center(
                       child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      )),
+                    'Sign Up',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  )),
                 ),
               ),
             ),
@@ -131,7 +131,6 @@ class _RegisterFormState extends State<RegisterForm> {
                 onPressed: () async {
                   GoRouter.of(context).go(AppRouter.loginScreen);
                 },
-
                 child: const SizedBox(
                   width: 300,
                   height: 40,
@@ -149,7 +148,6 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
             ),
           ),
-
 
           // Padding(
           //

@@ -15,7 +15,7 @@ class UserDataCardWidget extends StatelessWidget {
         elevation: 4,
         child: ListTile(
           title: Text(
-            user.firstName + " " + user.lastName,
+            "${user.firstName} ${user.lastName}",
             style: const TextStyle(color: Colors.white),
           ),
           subtitle: Text(

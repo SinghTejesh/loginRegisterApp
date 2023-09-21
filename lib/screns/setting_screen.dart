@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:login_screen/router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingScreen extends StatelessWidget {
-
   const SettingScreen({Key? key}) : super(key: key);
+
+  void _handleLogout(BuildContext context) async {
+    var getSharedPrefData = await SharedPreferences.getInstance();
+    await getSharedPrefData.remove('userToken');
+    if (context.mounted) {
+      GoRouter.of(context).go(AppRouter.loginScreen);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => _handleLogout(context),
+          ),
+        ],
       ),
       body: Center(
         child: Column(

@@ -4,15 +4,14 @@ import 'package:login_screen/router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
-
   const ProfileScreen({Key? key}) : super(key: key);
 
   void _handleLogout(BuildContext context) async {
     var getSharedPrefData = await SharedPreferences.getInstance();
     await getSharedPrefData.remove('userToken');
-    //GoRouter.of(context).go(AppRouter.loginScreen);
-    GoRouter.of(context).go(AppRouter.loginScreen);
-
+    if (context.mounted) {
+      GoRouter.of(context).go(AppRouter.loginScreen);
+    }
   }
 
   @override

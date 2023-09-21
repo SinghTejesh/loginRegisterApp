@@ -21,12 +21,12 @@ class LoginForm extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
-
+  createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -99,11 +99,12 @@ class _LoginFormState extends State<LoginForm> {
                     var pwd = widget.pwdController.text;
                     var token = await widget.fetchUserLogin(uname, pwd);
                     var container = ProviderContainer();
-
-                    processToken(container ,context,token, () {
-                      widget.showSnackBar("Enter Email: eve.holt@reqres.in and Password: pistol");
-                    });
-
+                    if (mounted) {
+                      processToken(container, context, token, () {
+                        widget.showSnackBar(
+                            "Enter Email: eve.holt@reqres.in and Password: pistol");
+                      });
+                    }
                   }
                 },
                 style: ButtonStyle(
@@ -111,8 +112,8 @@ class _LoginFormState extends State<LoginForm> {
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
                       side: const BorderSide(
-                          color: Colors.grey,
-                          width: 1,
+                        color: Colors.grey,
+                        width: 1,
                       ), // Border color and width
                     ),
                   ),
@@ -143,14 +144,14 @@ class _LoginFormState extends State<LoginForm> {
                   GoRouter.of(context).go(AppRouter.registration);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
                       side: const BorderSide(
                           color: Colors.blue,
-                          width: 2
-                      ), // Border color and width
+                          width: 2), // Border color and width
                     ),
                   ),
                 ),

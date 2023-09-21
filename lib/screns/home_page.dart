@@ -1,6 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -39,7 +36,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   void _handleLogout(BuildContext context) async {
     var getSharedPrefData = await SharedPreferences.getInstance();
     await getSharedPrefData.remove('userToken');
-    context.go(AppRouter.loginScreen);
+    if (mounted) {
+      context.go(AppRouter.loginScreen);
+    }
   }
 
   @override
